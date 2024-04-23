@@ -4,11 +4,14 @@ const sequelize = require("./dbconfig")
 const app = express()
 const PORT = 3001
 const UserController = require("./controllers/user")
+const TarjetaController = require("./controllers/tarjeta")
 
 app.use(cors())
 
 //endpoint Usuarios
 app.get('/user/:id', UserController.getUserById)
+
+app.get('/tarjetas/:id', TarjetaController.getTarjetaByUserId)
 
 sequelize.sync().then(()=>{
     console.log('Modelos sincronizados')

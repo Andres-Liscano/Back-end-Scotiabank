@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../dbconfig');
 const Cliente = require('./Clientes');
 
-const Tarjeta = sequelize.define('Tarjeta', {
+const Tarjetas = sequelize.define('Tarjetas', {
     id_tarjeta: {
         type: DataTypes.INTEGER,
         primaryKey: true
@@ -60,6 +60,6 @@ const Tarjeta = sequelize.define('Tarjeta', {
     }
 });
 
-Tarjeta.belongsTo(Cliente, { foreignKey: 'id_cliente' });
+Tarjetas.belongsTo(Cliente, { foreignKey: 'id_cliente' });
 
-module.exports = Tarjeta;
+module.exports = Tarjetas;
