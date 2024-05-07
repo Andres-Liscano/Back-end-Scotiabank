@@ -13,6 +13,8 @@ app.get('/user/:id', UserController.getUserById)
 
 app.get('/tarjetas/:id', TarjetaController.getTarjetaByUserId)
 
+app.get('/tarjetas/cupo/:id', TarjetaController.getTarjetaCupoByUserId)
+
 sequelize.sync().then(()=>{
     console.log('Modelos sincronizados')
 }).catch(error => {
