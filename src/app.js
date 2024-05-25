@@ -5,6 +5,7 @@ const app = express()
 const PORT = 3001
 const UserController = require("./controllers/user")
 const TarjetaController = require("./controllers/tarjeta")
+const ExtractoController = require("./controllers/extracto")
 
 app.use(cors())
 
@@ -13,7 +14,9 @@ app.get('/user/:id', UserController.getUserById)
 
 app.get('/tarjetas/:id', TarjetaController.getTarjetaByUserId)
 
-app.get('/tarjetas/cupo/:id', TarjetaController.getTarjetaCupoByUserId)
+app.get('/tarjetas/cupo-credito/:id', TarjetaController.getTarjetaCupoCreditoByIdClient)
+app.get('/tarjetas/cupo-debito/:id', TarjetaController.getTarjetaCupoDebitoByIdClient)
+app.get('/extracto/:id', ExtractoController.getExtractoByTarjetaId)
 
 sequelize.sync().then(()=>{
     console.log('Modelos sincronizados')

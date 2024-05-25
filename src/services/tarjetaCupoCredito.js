@@ -4,12 +4,18 @@ const Tarjetas = require("../models/Tarjetas")
 const { where } = require("sequelize")
 
 class TarjetaCupoCredito {
-    static async getTarjetaCupoByUserId(id) {
-        const tarjeta = await Tarjetas.findOne({
-             where: { id_tarjeta:id },
+    static async getTarjetaCupoCreditoByIdClient(id) {
+        const tarjeta = await Tarjetas.findAll({
+             where: { id_cliente:id, tipo_tarjeta: 'Crédito'},
              attributes:['tipo_tarjeta', 'cupo_total', 'cupo_disponible'] });
+        return tarjeta
+    }
 
-        return tarjeta.dataValues
+    static async getTarjetaCupoDebitoByIdClient(id) {
+        const tarjeta = await Tarjetas.findAll({
+             where: { id_cliente:id, tipo_tarjeta: 'Débito'},
+             attributes:['tipo_tarjeta', 'saldo_actual'] });
+        return tarjeta
     }
 }
 
