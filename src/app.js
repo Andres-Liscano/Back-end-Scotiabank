@@ -6,6 +6,7 @@ const PORT = 3001
 const UserController = require("./controllers/user")
 const TarjetaController = require("./controllers/tarjeta")
 const ExtractoController = require("./controllers/extracto")
+const LLamadaEmpleadoController = require("./controllers/llamada")
 
 app.use(cors())
 
@@ -17,6 +18,8 @@ app.get('/tarjetas/:id', TarjetaController.getTarjetaByUserId)
 app.get('/tarjetas/cupo-credito/:id', TarjetaController.getTarjetaCupoCreditoByIdClient)
 app.get('/tarjetas/cupo-debito/:id', TarjetaController.getTarjetaCupoDebitoByIdClient)
 app.get('/extracto/:id', ExtractoController.getExtractoByTarjetaId)
+app.get('/llamada/:id', LLamadaEmpleadoController.getLlamadaByEmpleadoId)
+app.get('/llamada-prom/:id', LLamadaEmpleadoController.getLlamadaPromByEmpleadoId)
 
 sequelize.sync().then(()=>{
     console.log('Modelos sincronizados')
@@ -27,3 +30,5 @@ sequelize.sync().then(()=>{
 app.listen(PORT,()=>{
     console.log(`Servidor inicializando en http://localhost:${PORT}`)
 })
+
+module.exports = app;
